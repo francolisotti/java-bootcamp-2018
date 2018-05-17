@@ -17,7 +17,7 @@ public class CartRepo {
 	}
 
 	public Cart getCartById(int id) {
-		return mylist.get(id);
+		return mylist.get(id-1);
 	}
 
 	public void addCart(Cart c) {

@@ -1,9 +1,9 @@
 package com.lisotti.topic3.repos;
 import com.lisotti.topic3.model.User;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class UserRepo {
 
@@ -13,19 +13,9 @@ public class UserRepo {
 		mylist.remove(id);
 	}
 
-	public User getByUsername(String username) {
-		User searched = new User();
-		for (User u: mylist){
-			if (u.getUsername().equals(username)){
-				searched=u;
-			}
-		}
-		return searched;
-	}
-
-
 	public void save(User user) {
 		mylist.add(user);
+		user.setId(mylist.size());
 	}
 
 	public List<User> getAll()

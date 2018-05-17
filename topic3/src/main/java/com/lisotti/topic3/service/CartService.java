@@ -35,4 +35,8 @@ public class CartService {
 		return c;
 	}
 
+	public void addCart(Cart c){
+		cartRepo.addCart(c);
+	}
+
 }

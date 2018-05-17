@@ -4,8 +4,11 @@ package com.lisotti.topic3.service;
 import com.lisotti.topic3.model.User;
 import com.lisotti.topic3.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class UserService {
 
     @Autowired
@@ -29,11 +32,6 @@ public class UserService {
     public User getById(int id) {
 
         return this.userRepo.getById(id);
-    }
-
-    public User getByUsername(String username)
-    {
-        return this.userRepo.getByUsername(username);
     }
 
     public void updateById(int id, User u)

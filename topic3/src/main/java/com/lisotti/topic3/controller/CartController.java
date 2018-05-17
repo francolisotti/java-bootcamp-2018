@@ -4,6 +4,7 @@ import com.lisotti.topic3.model.Cart;
 import com.lisotti.topic3.model.Product;
 import com.lisotti.topic3.model.User;
 import com.lisotti.topic3.service.CartService;
+import com.lisotti.topic3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,27 +18,35 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private UserService userService;
 
-    public CartController(CartService cartService) {
+    public CartController(CartService cartService, UserService userService) {
         this.cartService = cartService;
+        this.userService = userService;
 
     }
 
-    @RequestMapping(value = "/addCart", method = RequestMethod.GET, produces = "application/json")
-    public Cart addCart() {
+    @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = "application/json")
+    public Cart createCart(String username, String pass) {
+        User u = new User(username,pass);
+        userService.register(u);
 
+        Cart c = new Cart(u.getId());
+        cartService.addCart(c);
 
-        return
+        return c;
     }
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public void getCart(){
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET, produces = "application/json")
+    public Cart getCart(Integer cartId, String productName ){
+        Product p = new Product(productName);
+        cartService.addProduct(p, cartId);
+
+        return cartService.getCart(cartId);
 
     }
 
-        @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public void removeCart(){
-
-    }
+    // falta añadir eliminar producto y ver carrito
 
 
 }
