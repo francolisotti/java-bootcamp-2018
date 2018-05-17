@@ -38,7 +38,7 @@ public class CartController {
         return c;
     }
     @RequestMapping(value = "/addProduct", method = RequestMethod.GET, produces = "application/json")
-    public Cart getCart(Integer cartId, String productName ){
+    public Cart addProduct(Integer cartId, String productName ){
         Product p = new Product(productName);
         cartService.addProduct(p, cartId);
 
@@ -46,7 +46,18 @@ public class CartController {
 
     }
 
-    // falta añadir eliminar producto y ver carrito
+    @RequestMapping(value = "/deleteProduct", method = RequestMethod.GET, produces = "application/json")
+    public Cart deleteProduct(Integer cartId, String productName ){
+        cartService.removeProduct(productName, cartId);
+
+        return cartService.getCart(cartId);
+
+    }
+
+    @RequestMapping(value = "/viewCart", method = RequestMethod.GET, produces = "application/json")
+    public Cart viewCart(Integer cartId){
+        return cartService.getCart(cartId);
+    }
 
 
 }

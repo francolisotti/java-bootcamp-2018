@@ -18,32 +18,16 @@ public class Cart {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public void addProduct(Product product) {
 		this.products.add(product);
-		product.setId(products.size());
+		product.setId(this.products.size());
 	}
 
-	public Product getProductById(int id) {
-		Product result = null;
+	public void removeProduct(String productName) {
 
-		for (Product p: products){
-			if (p.getId()==id){
-				result=p;
-			}
-		}
-
-		return result;
-	}
-
-
-	public void removeProductById(int id) {
-		for (Product p: products){
-			if (p.getId()==id){
-				products.remove(p);
+		for (Product p: this.products){
+			if (p.getName().equals(productName)){
+				this.products.remove(p);
 			}
 		}
 	}

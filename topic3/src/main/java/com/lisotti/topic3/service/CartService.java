@@ -23,9 +23,9 @@ public class CartService {
 		c.addProduct(p);
 	}
 
-	public void removeProduct(int idProduct, int id) {
+	public void removeProduct(String productName, int id) {
 		Cart c = cartRepo.getCartById(id);
-		c.removeProductById(idProduct);
+		c.removeProduct(productName);
 	}
 
 	public Cart getCart(int id) {
