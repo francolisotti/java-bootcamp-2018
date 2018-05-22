@@ -23,9 +23,15 @@ public class CartService {
 		c.addProduct(p);
 	}
 
-	public void removeProduct(String productName, int id) {
+	public boolean removeProduct(String productName, int id) {
+		boolean rtn=false;
 		Cart c = cartRepo.getCartById(id);
-		c.removeProduct(productName);
+		if (c!=null){
+			c.removeProduct(productName);
+			rtn= true;
+		}
+		return rtn;
+
 	}
 
 	public Cart getCart(int id) {
