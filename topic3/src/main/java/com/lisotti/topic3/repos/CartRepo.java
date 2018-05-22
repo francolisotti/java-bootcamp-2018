@@ -9,7 +9,11 @@ import java.util.List;
 @Repository
 public class CartRepo {
 
-	private List<Cart> mylist = new ArrayList<>();
+	private List<Cart> mylist;
+
+	public CartRepo(){
+		this.mylist = new ArrayList<>();
+	}
 
 	public List<Cart> getAll() {
 
@@ -25,10 +29,9 @@ public class CartRepo {
 	}
 
 	public void removeCartById(int id) {
-		for (Cart c: mylist){
-			if (c.getId()==id){
-				mylist.remove(c);
-			}
-		}
+
+
+		mylist.remove(id-1);
+
 	}
 }

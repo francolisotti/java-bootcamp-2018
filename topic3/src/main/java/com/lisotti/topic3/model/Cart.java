@@ -23,13 +23,15 @@ public class Cart {
 		product.setId(this.products.size());
 	}
 
-	public synchronized void removeProduct(String productName) {
-
+	public synchronized boolean removeProduct(String productName) {
+		boolean rtn=false;
 		for (Product p: this.products){
 			if (p.getName().equals(productName)){
 				this.products.remove(p);
+				rtn=true;
 			}
 		}
+		return rtn;
 	}
 
 	public List<Product> getAllProducts() {
